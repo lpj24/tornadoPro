@@ -13,7 +13,7 @@ from tornado.options import define,options
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-reload(tornado.ioloop)
+
 define("port", default=8888, help="tornado port", type=int)
 define("mysql_host", default="127.0.0.1:3306", help="host")
 define("mysql_database", default="search", help="database name")
@@ -71,7 +71,8 @@ class QueryHandler(BaseHandler):
         ids = ()
         queryset = {}
         if len(res['matches']) > 0:
-            listid = [i['id'] for i in res['matches']]
+            for i in res['matches']:
+                listid.append(i['id'])
             ids = tuple(listid)
             if len(ids) == 1:
                 ids = ids[0]
@@ -117,14 +118,14 @@ class SyncHandler(BaseHandler):
             
 
            
-            for item,text in enumerate(source):
+            for item in xrange(len(source)):
                 sql = "insert into designBook (title,href,alt,imgsrc,detail) values (%s,%s,%s,%s,%s)"
                 dic_source = {}
-                dic_source["title"] = text.get("title")
-                dic_source["href"] = text.get("href")
-                dic_source["alt"] = text.find('img').get('alt')
-                dic_source["src"] = text.find('img').get('src')
-                dic_source["detail"] = sourceDetial[index].string
+                dic_source["title"] = source[item].get("title")
+                dic_source["href"] = source[item].get("href")
+                dic_source["alt"] = source[item].find('img').get('alt')
+                dic_source["src"] = source[item].find('img').get('src')
+                dic_source["detail"] = sourceDetial[item].string
                 self.db.execute(sql,str(dic_source["title"]),str(dic_source["href"]),str(dic_source["alt"]),str(dic_source["src"]),str(dic_source["detail"]))
                 list.append(dic_source)
 
@@ -141,5 +142,5 @@ def main():
     loop.start()
 
 if __name__ == "__main__":
-    
+    reload(tornado.ioloop)
     main()
