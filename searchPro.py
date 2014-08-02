@@ -49,6 +49,7 @@ class Application(tornado.web.Application):
 
 class BaseHandler(tornado.web.RequestHandler):
     @property
+    @tornado.web.asynchronous
     def db(self):
         return self.application.db
 
@@ -56,10 +57,14 @@ class BaseHandler(tornado.web.RequestHandler):
 
 class HomeHandler(BaseHandler):
     def get(self):
+
         self.render("searchPage.html",queryset="",keyword="")
 
 class QueryHandler(BaseHandler):
+   # @tornado.web.asynchronous
     def get(self):
+        # import pdb
+        # pdb.set_trace()
         keyword = self.get_argument("keyword",None)
         
         cl = SphinxClient()    
@@ -135,9 +140,12 @@ def main():
     print "server start"
     tornado.options.parse_command_line()
     http_server = tornado.httpserver.HTTPServer(Application())
+    print http_server.listen.im_class
+    #app = Application()
+    #app.listen(options.port)   web.application.listen be used to avoid the need to create httpserver
     http_server.listen(options.port)
     loop = tornado.ioloop.IOLoop.instance()
-    tornado.autoreload.start(loop) 
+    tornado.autoreload.start(loop)
     loop.start()
 
 if __name__ == "__main__":
