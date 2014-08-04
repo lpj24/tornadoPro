@@ -36,7 +36,7 @@ class Application(tornado.web.Application):
             #cookie_secret="__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__",
             #login_url="/auth/login",
             gzip=True,
-            debug=True,
+            debug=False,
         )
         tornado.web.Application.__init__(self, handlers, **settings)
         
@@ -145,9 +145,7 @@ def main():
     #app = Application()
     #app.listen(options.port)   web.application.listen be used to avoid the need to create httpserver
     http_server.listen(options.port)
-    loop = tornado.ioloop.IOLoop.instance()
-    tornado.autoreload.start(loop)
-    loop.start()
+    tornado.ioloop.IOLoop.instance().start()
 
 if __name__ == "__main__":
     
