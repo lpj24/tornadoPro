@@ -1,6 +1,4 @@
 tornadoPro
-==========
-
 sphinx全文检索由django迁移到tornado上
 
 使用beautifulsoup从当当网抓取所有的程序设计类书籍存储到mysql数据库，用croeseek做全文索引，django框架
@@ -10,3 +8,7 @@ sphinx全文检索由django迁移到tornado上
 2.更新sphinx的索引，启动sphinx的进程,首先ps -eo comm,cmd,pid | grep searchd查处sphinx的进程pid，kill -QUIT searched的pid号 然后./indexer --all启动所有的索引,./searchd启动进程
 
 3.查询是queryHandler类。使用sphinxapi模块，操作详解http://6167018.blog.51cto.com/6157018/1435150我的博客
+
+
+
+使用nginx反向代理，配置文件见nginx.conf。tornado进程不是Demon进程，当终端关闭等情况，则进程停止，tornado服务不能访问，supervisord管理进程在/etc/supervisord/supervisord.conf添加要守护的进程
