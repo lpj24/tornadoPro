@@ -1,0 +1,56 @@
+server start
+<class 'tornado.httpserver.HTTPServer'>
+Traceback (most recent call last):
+  File "/home/lpj/tornadoPro/searchPro.py", line 154, in <module>
+    main()
+  File "/home/lpj/tornadoPro/searchPro.py", line 147, in main
+    http_server.listen(options.port)
+  File "/usr/local/lib/python2.7/dist-packages/tornado-3.2.2-py2.7-linux-i686.egg/tornado/tcpserver.py", line 117, in listen
+    sockets = bind_sockets(port, address=address)
+  File "/usr/local/lib/python2.7/dist-packages/tornado-3.2.2-py2.7-linux-i686.egg/tornado/netutil.py", line 104, in bind_sockets
+    sock.bind(sockaddr)
+  File "/usr/lib/python2.7/socket.py", line 224, in meth
+    return getattr(self._sock,name)(*args)
+socket.error: [Errno 98] Address already in use
+server start
+<class 'tornado.httpserver.HTTPServer'>
+Traceback (most recent call last):
+  File "/home/lpj/tornadoPro/searchPro.py", line 154, in <module>
+    main()
+  File "/home/lpj/tornadoPro/searchPro.py", line 147, in main
+    http_server.listen(options.port)
+  File "/usr/local/lib/python2.7/dist-packages/tornado-3.2.2-py2.7-linux-i686.egg/tornado/tcpserver.py", line 117, in listen
+    sockets = bind_sockets(port, address=address)
+  File "/usr/local/lib/python2.7/dist-packages/tornado-3.2.2-py2.7-linux-i686.egg/tornado/netutil.py", line 104, in bind_sockets
+    sock.bind(sockaddr)
+  File "/usr/lib/python2.7/socket.py", line 224, in meth
+    return getattr(self._sock,name)(*args)
+socket.error: [Errno 98] Address already in use
+server start
+<class 'tornado.httpserver.HTTPServer'>
+Traceback (most recent call last):
+  File "/home/lpj/tornadoPro/searchPro.py", line 154, in <module>
+    main()
+  File "/home/lpj/tornadoPro/searchPro.py", line 147, in main
+    http_server.listen(options.port)
+  File "/usr/local/lib/python2.7/dist-packages/tornado-3.2.2-py2.7-linux-i686.egg/tornado/tcpserver.py", line 117, in listen
+    sockets = bind_sockets(port, address=address)
+  File "/usr/local/lib/python2.7/dist-packages/tornado-3.2.2-py2.7-linux-i686.egg/tornado/netutil.py", line 104, in bind_sockets
+    sock.bind(sockaddr)
+  File "/usr/lib/python2.7/socket.py", line 224, in meth
+    return getattr(self._sock,name)(*args)
+socket.error: [Errno 98] Address already in use
+server start
+<class 'tornado.httpserver.HTTPServer'>
+Traceback (most recent call last):
+  File "/home/lpj/tornadoPro/searchPro.py", line 154, in <module>
+    main()
+  File "/home/lpj/tornadoPro/searchPro.py", line 147, in main
+    http_server.listen(options.port)
+  File "/usr/local/lib/python2.7/dist-packages/tornado-3.2.2-py2.7-linux-i686.egg/tornado/tcpserver.py", line 117, in listen
+    sockets = bind_sockets(port, address=address)
+  File "/usr/local/lib/python2.7/dist-packages/tornado-3.2.2-py2.7-linux-i686.egg/tornado/netutil.py", line 104, in bind_sockets
+    sock.bind(sockaddr)
+  File "/usr/lib/python2.7/socket.py", line 224, in meth
+    return getattr(self._sock,name)(*args)
+socket.error: [Errno 98] Address already in use

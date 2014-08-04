@@ -59,6 +59,7 @@ class HomeHandler(BaseHandler):
     def get(self):
 
         self.render("searchPage.html",queryset="",keyword="")
+        #self.write("hello tornado nginx")
 
 class QueryHandler(BaseHandler):
    # @tornado.web.asynchronous
@@ -94,7 +95,7 @@ class QueryHandler(BaseHandler):
 class SyncHandler(BaseHandler):
         #get the dangdang's html 
     def getTotal(self):
-        proxy_handler = urllib2.ProxyHandler({'http': 'http://'+'58.68.246.12:18080'})      
+        proxy_handler = urllib2.ProxyHandler({'http': 'http://'+'58.68.246.12:18080'})
         opener = urllib2.build_opener(proxy_handler)
         urllib2.install_opener(opener)
         url = 'http://category.dangdang.com/pg1-cp01.54.06.00.00.00.html'
