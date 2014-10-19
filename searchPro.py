@@ -57,7 +57,7 @@ class BaseHandler(tornado.web.RequestHandler):
 
 class HomeHandler(BaseHandler):
     def get(self):
-
+        print "diaoyong"
         self.render("searchPage.html",queryset="",keyword="")
         #self.write("hello tornado nginx")
 
@@ -123,7 +123,7 @@ class SyncHandler(BaseHandler):
             
 
            
-            for item,text in enumerate(source):
+            for index,text in enumerate(source):
                 sql = "insert into designBook (title,href,alt,imgsrc,detail) values (%s,%s,%s,%s,%s)"
                 dic_source = {}
                 dic_source["title"] = text.get("title")
