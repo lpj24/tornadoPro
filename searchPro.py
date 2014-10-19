@@ -13,6 +13,7 @@ from mainsource.config import BaseHandler
 #解决bs从抓取网页信息插入数据库时的编码问题
 #start
 import sys
+import logging
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -46,7 +47,7 @@ class QueryHandler(BaseHandler):
         else:
             pass
 
-        
+        logging.warn("DEBUG output arg:%ss",{"queryset":queryset,"keyword":keyword})
         self.render("searchPage.html",queryset=queryset,keyword=keyword)
 
 class SyncHandler(BaseHandler):
