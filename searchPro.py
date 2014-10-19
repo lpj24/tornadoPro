@@ -10,6 +10,7 @@ import os.path
 from tornado.options import define,options
 
 #解决bs从抓取网页信息插入数据库时的编码问题
+#start
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
