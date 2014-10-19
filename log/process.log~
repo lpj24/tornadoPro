@@ -1,56 +1,89 @@
-server start
-<class 'tornado.httpserver.HTTPServer'>
-Traceback (most recent call last):
-  File "/home/lpj/tornadoPro/searchPro.py", line 154, in <module>
-    main()
-  File "/home/lpj/tornadoPro/searchPro.py", line 147, in main
-    http_server.listen(options.port)
-  File "/usr/local/lib/python2.7/dist-packages/tornado-3.2.2-py2.7-linux-i686.egg/tornado/tcpserver.py", line 117, in listen
-    sockets = bind_sockets(port, address=address)
-  File "/usr/local/lib/python2.7/dist-packages/tornado-3.2.2-py2.7-linux-i686.egg/tornado/netutil.py", line 104, in bind_sockets
-    sock.bind(sockaddr)
-  File "/usr/lib/python2.7/socket.py", line 224, in meth
-    return getattr(self._sock,name)(*args)
-socket.error: [Errno 98] Address already in use
-server start
-<class 'tornado.httpserver.HTTPServer'>
-Traceback (most recent call last):
-  File "/home/lpj/tornadoPro/searchPro.py", line 154, in <module>
-    main()
-  File "/home/lpj/tornadoPro/searchPro.py", line 147, in main
-    http_server.listen(options.port)
-  File "/usr/local/lib/python2.7/dist-packages/tornado-3.2.2-py2.7-linux-i686.egg/tornado/tcpserver.py", line 117, in listen
-    sockets = bind_sockets(port, address=address)
-  File "/usr/local/lib/python2.7/dist-packages/tornado-3.2.2-py2.7-linux-i686.egg/tornado/netutil.py", line 104, in bind_sockets
-    sock.bind(sockaddr)
-  File "/usr/lib/python2.7/socket.py", line 224, in meth
-    return getattr(self._sock,name)(*args)
-socket.error: [Errno 98] Address already in use
-server start
-<class 'tornado.httpserver.HTTPServer'>
-Traceback (most recent call last):
-  File "/home/lpj/tornadoPro/searchPro.py", line 154, in <module>
-    main()
-  File "/home/lpj/tornadoPro/searchPro.py", line 147, in main
-    http_server.listen(options.port)
-  File "/usr/local/lib/python2.7/dist-packages/tornado-3.2.2-py2.7-linux-i686.egg/tornado/tcpserver.py", line 117, in listen
-    sockets = bind_sockets(port, address=address)
-  File "/usr/local/lib/python2.7/dist-packages/tornado-3.2.2-py2.7-linux-i686.egg/tornado/netutil.py", line 104, in bind_sockets
-    sock.bind(sockaddr)
-  File "/usr/lib/python2.7/socket.py", line 224, in meth
-    return getattr(self._sock,name)(*args)
-socket.error: [Errno 98] Address already in use
-server start
-<class 'tornado.httpserver.HTTPServer'>
-Traceback (most recent call last):
-  File "/home/lpj/tornadoPro/searchPro.py", line 154, in <module>
-    main()
-  File "/home/lpj/tornadoPro/searchPro.py", line 147, in main
-    http_server.listen(options.port)
-  File "/usr/local/lib/python2.7/dist-packages/tornado-3.2.2-py2.7-linux-i686.egg/tornado/tcpserver.py", line 117, in listen
-    sockets = bind_sockets(port, address=address)
-  File "/usr/local/lib/python2.7/dist-packages/tornado-3.2.2-py2.7-linux-i686.egg/tornado/netutil.py", line 104, in bind_sockets
-    sock.bind(sockaddr)
-  File "/usr/lib/python2.7/socket.py", line 224, in meth
-    return getattr(self._sock,name)(*args)
-socket.error: [Errno 98] Address already in use
+[I 140804 22:41:51 web:1859] 200 GET / (127.0.0.1) 9.64ms
+[I 140804 22:46:31 autoreload:191] /home/lpj/tornadoPro/searchPro.py modified; restarting server
+[I 140804 22:46:43 autoreload:191] /home/lpj/tornadoPro/searchPro.py modified; restarting server
+[I 140804 22:46:49 web:1859] 200 GET / (127.0.0.1) 38.73ms
+[I 140804 22:47:47 web:1859] 200 GET / (127.0.0.1) 8.99ms
+[W 140804 22:47:51 web:1859] 404 GET /404.html (127.0.0.1) 1.33ms
+[W 140804 22:47:57 web:1859] 404 GET /sa (127.0.0.1) 0.56ms
+[I 140804 22:48:22 autoreload:191] /home/lpj/tornadoPro/searchPro.py modified; restarting server
+[I 140804 22:48:51 web:1859] 200 GET / (127.0.0.1) 10.69ms
+[W 140804 22:48:55 web:1859] 404 GET /sa (127.0.0.1) 0.50ms
+[W 140804 22:49:02 web:1859] 404 GET /404.html (127.0.0.1) 0.41ms
+[W 140804 22:50:17 web:1859] 404 GET /sa (127.0.0.1) 0.41ms
+[I 140804 22:50:22 web:1859] 200 GET / (127.0.0.1) 0.72ms
+[W 140804 22:50:26 web:1859] 404 GET /DASDSA (127.0.0.1) 0.46ms
+[W 140804 22:54:10 web:1859] 404 GET /DASDSA (127.0.0.1) 0.42ms
+[I 140804 22:54:44 web:1859] 200 GET / (127.0.0.1) 0.76ms
+[W 140804 22:54:47 web:1859] 404 GET /dasdsad (127.0.0.1) 0.59ms
+[I 140804 23:04:14 web:1859] 200 GET / (127.0.0.1) 0.68ms
+[W 140804 23:04:23 web:1859] 404 GET /ds (127.0.0.1) 0.59ms
+[I 140804 23:05:20 web:1859] 200 GET / (127.0.0.1) 0.61ms
+[W 140804 23:05:24 web:1859] 404 GET /dasda (127.0.0.1) 0.41ms
+[W 140804 23:05:24 web:1859] 404 GET /templates/404.html (127.0.0.1) 0.42ms
+[W 140804 23:05:24 web:1859] 404 GET /templates/templates/404.html (127.0.0.1) 0.41ms
+[W 140804 23:05:24 web:1859] 404 GET /templates/templates/templates/404.html (127.0.0.1) 0.41ms
+[W 140804 23:05:24 web:1859] 404 GET /templates/templates/templates/templates/404.html (127.0.0.1) 0.41ms
+[W 140804 23:05:24 web:1859] 404 GET /templates/templates/templates/templates/templates/404.html (127.0.0.1) 0.46ms
+[W 140804 23:05:24 web:1859] 404 GET /templates/templates/templates/templates/templates/templates/404.html (127.0.0.1) 0.41ms
+[W 140804 23:05:24 web:1859] 404 GET /templates/templates/templates/templates/templates/templates/templates/404.html (127.0.0.1) 0.41ms
+[W 140804 23:05:24 web:1859] 404 GET /templates/templates/templates/templates/templates/templates/templates/templates/404.html (127.0.0.1) 0.42ms
+[W 140804 23:05:24 web:1859] 404 GET /templates/templates/templates/templates/templates/templates/templates/templates/templates/404.html (127.0.0.1) 0.41ms
+[W 140804 23:05:24 web:1859] 404 GET /templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/404.html (127.0.0.1) 0.44ms
+[W 140804 23:05:24 web:1859] 404 GET /templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/404.html (127.0.0.1) 0.42ms
+[W 140804 23:05:24 web:1859] 404 GET /templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/404.html (127.0.0.1) 0.41ms
+[W 140804 23:05:24 web:1859] 404 GET /templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/404.html (127.0.0.1) 0.41ms
+[W 140804 23:05:24 web:1859] 404 GET /templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/404.html (127.0.0.1) 0.41ms
+[W 140804 23:05:24 web:1859] 404 GET /templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/404.html (127.0.0.1) 0.41ms
+[W 140804 23:05:24 web:1859] 404 GET /templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/404.html (127.0.0.1) 0.41ms
+[W 140804 23:05:24 web:1859] 404 GET /templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/404.html (127.0.0.1) 0.44ms
+[W 140804 23:05:24 web:1859] 404 GET /templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/404.html (127.0.0.1) 0.44ms
+[W 140804 23:05:25 web:1859] 404 GET /templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/404.html (127.0.0.1) 0.41ms
+[W 140804 23:05:25 web:1859] 404 GET /templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/templates/404.html (127.0.0.1) 0.41ms
+[I 140804 23:06:11 web:1859] 200 GET / (127.0.0.1) 0.61ms
+[W 140804 23:06:13 web:1859] 404 GET /dasda (127.0.0.1) 0.48ms
+[W 140804 23:06:13 web:1859] 404 GET /templates/404.html (127.0.0.1) 0.42ms
+[W 140804 23:06:35 web:1859] 404 GET /d (127.0.0.1) 0.50ms
+[W 140804 23:06:35 web:1859] 404 GET /404.html (127.0.0.1) 0.45ms
+[I 140804 23:06:38 web:1859] 200 GET / (127.0.0.1) 0.71ms
+[W 140804 23:06:41 web:1859] 404 GET /sa (127.0.0.1) 0.44ms
+[W 140804 23:06:41 web:1859] 404 GET /404.html (127.0.0.1) 0.39ms
+[I 140804 23:07:25 web:1859] 200 GET / (127.0.0.1) 0.62ms
+[W 140804 23:07:29 web:1859] 404 GET /dasda (127.0.0.1) 0.44ms
+[W 140804 23:07:29 web:1859] 404 GET /404.html (127.0.0.1) 0.36ms
+[I 140804 23:08:10 web:1859] 200 GET / (127.0.0.1) 0.74ms
+[W 140804 23:08:14 web:1859] 404 GET /dasda (127.0.0.1) 0.49ms
+[W 140804 23:08:14 web:1859] 404 GET /404.html (127.0.0.1) 0.41ms
+[W 140804 23:10:18 web:1859] 404 GET /dasda (127.0.0.1) 0.50ms
+[W 140804 23:10:18 web:1859] 404 GET /home/lpj/tornado/templates/404.html (127.0.0.1) 0.40ms
+[I 140804 23:10:21 web:1859] 200 GET / (127.0.0.1) 0.73ms
+[I 140804 23:10:30 web:1859] 200 GET / (127.0.0.1) 0.62ms
+[W 140804 23:10:38 web:1859] 404 GET /dsds (127.0.0.1) 0.44ms
+[W 140804 23:10:38 web:1859] 404 GET /home/lpj/tornado/templates/404.html (127.0.0.1) 0.37ms
+[W 140804 23:11:23 web:1859] 404 GET /dsds (127.0.0.1) 0.50ms
+[W 140804 23:11:23 web:1859] 404 GET /templates/404.html (127.0.0.1) 0.46ms
+[I 140804 23:11:37 web:1859] 200 GET / (127.0.0.1) 0.80ms
+[W 140804 23:11:40 web:1859] 404 GET /dasdha (127.0.0.1) 0.47ms
+[W 140804 23:11:40 web:1859] 404 GET /templates/404.html (127.0.0.1) 0.49ms
+[W 140804 23:12:04 web:1859] 404 GET /dasdha (127.0.0.1) 0.49ms
+[W 140804 23:12:04 web:1859] 404 GET /404.html (127.0.0.1) 0.46ms
+[I 140804 23:12:08 web:1859] 200 GET / (127.0.0.1) 0.74ms
+[W 140804 23:12:12 web:1859] 404 GET /dakshdaskd (127.0.0.1) 0.42ms
+[W 140804 23:12:12 web:1859] 404 GET /404.html (127.0.0.1) 0.36ms
+[W 140804 23:14:26 web:1859] 404 GET /dakshdaskd (127.0.0.1) 0.47ms
+[W 140804 23:14:26 web:1859] 404 GET /404.html (127.0.0.1) 0.45ms
+[W 140804 23:14:34 web:1859] 404 GET /dakshdaskd (127.0.0.1) 0.45ms
+[W 140804 23:14:34 web:1859] 404 GET /404.html (127.0.0.1) 0.46ms
+[I 140804 23:14:39 web:1859] 200 GET / (127.0.0.1) 0.61ms
+[W 140804 23:14:44 web:1859] 404 GET /daskh (127.0.0.1) 0.46ms
+[W 140804 23:14:44 web:1859] 404 GET /404.html (127.0.0.1) 0.45ms
+[W 140804 23:15:08 web:1859] 404 GET /daskh (127.0.0.1) 0.49ms
+[W 140804 23:15:08 web:1859] 404 GET /templates/404.html (127.0.0.1) 0.46ms
+[W 140804 23:16:06 web:1859] 404 GET /dasdsa (127.0.0.1) 0.44ms
+[W 140804 23:16:06 web:1859] 404 GET /templates/404.html (127.0.0.1) 0.38ms
+[W 140804 23:16:08 web:1859] 404 GET /templates/404.html (127.0.0.1) 0.48ms
+[W 140804 23:18:31 web:1859] 404 GET /daskh (127.0.0.1) 0.51ms
+[W 140804 23:19:00 web:1859] 404 GET /dasdsa (127.0.0.1) 0.43ms
+[W 140804 23:22:55 web:1859] 404 GET /daskh (127.0.0.1) 0.43ms
+[W 140804 23:23:20 web:1859] 404 GET /daskh (127.0.0.1) 0.46ms
+[W 140804 23:25:09 web:1859] 404 GET /daskh (127.0.0.1) 0.41ms
+[W 140804 23:25:10 web:1859] 404 GET /%7B%7B%20static_url( (127.0.0.1) 0.41ms

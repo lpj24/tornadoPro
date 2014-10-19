@@ -6,74 +6,30 @@ import tornado.httpserver
 from sphinxapi import *
 from bs4 import BeautifulSoup  
 import re,os,urllib2
+from mainsource.config import config
 import os.path
-from tornado.options import define,options
+from mainsource.config import BaseHandler
 
 #解决bs从抓取网页信息插入数据库时的编码问题
 #start
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-reload(tornado.ioloop)
-define("port", default=8888, help="tornado port", type=int)
-define("mysql_host", default="127.0.0.1:3306", help="host")
-define("mysql_database", default="search", help="database name")
-define("mysql_user", default="root", help="user")
-define("mysql_password", default="123", help="password")
-
-class Application(tornado.web.Application):
-    def __init__(self):
-        handlers = [
-            (r'/', HomeHandler),
-            (r'/query/*', QueryHandler),
-            (r'/updateDB/', SyncHandler),
-        ]
-        settings = dict(
-            blog_title="search sphinx",
-            template_path=os.path.join(os.path.dirname(__file__), "templates"),
-            static_path=os.path.join(os.path.dirname(__file__), "static"),
-            #ui_modules={"Entry": EntryModule},
-            xsrf_cookies=True,
-            #cookie_secret="__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__",
-            #login_url="/auth/login",
-            gzip=True,
-            debug=False,
-        )
-        tornado.web.Application.__init__(self, handlers, **settings)
-        
-        #db 
-        self.db = torndb.Connection(
-        host=options.mysql_host, database=options.mysql_database,
-        user=options.mysql_user, password=options.mysql_password)
 
 
 
-class BaseHandler(tornado.web.RequestHandler):
-    @property
-    @tornado.web.asynchronous
-    def db(self):
-        return self.application.db
 
 
 
 class HomeHandler(BaseHandler):
     def get(self):
-        print "diaoyong"
         self.render("searchPage.html",queryset="",keyword="")
-        #self.write("hello tornado nginx")
 
 class QueryHandler(BaseHandler):
-   # @tornado.web.asynchronous
+    @tornado.web.asynchronous
     def get(self):
-        # import pdb
-        # pdb.set_trace()
         keyword = self.get_argument("keyword",None)
-        
-        cl = SphinxClient()    
-        cl.SetServer('localhost',9312)  
-        #cl.SetWeights ( [100, 1] )
-        cl.SetMatchMode(SPH_MATCH_ANY) 
-        res = cl.Query(keyword,'*')
+        res = self.sphinx_db.Query(keyword,'*')
         listid = []
         ids = ()
         queryset = {}
@@ -86,7 +42,7 @@ class QueryHandler(BaseHandler):
             else:
                 sqlQuery = "select id,title,href,alt,imgsrc,detail from designBook where id in %s"
 
-            queryset = self.db.query(sqlQuery,ids)
+            queryset = self.mysl_db.query(sqlQuery,ids)
         else:
             pass
 
@@ -94,7 +50,7 @@ class QueryHandler(BaseHandler):
         self.render("searchPage.html",queryset=queryset,keyword=keyword)
 
 class SyncHandler(BaseHandler):
-        #get the dangdang's html 
+        #get the dangdang's html
     def getTotal(self):
         proxy_handler = urllib2.ProxyHandler({'http': 'http://'+'58.68.246.12:18080'})
         opener = urllib2.build_opener(proxy_handler)
@@ -106,6 +62,7 @@ class SyncHandler(BaseHandler):
         totPage = int(re.findall(r"(\d+)",totalString)[0])
         return totPage
 
+    @tornado.web.asynchronous
     def get(self):
         #get total page count
         totPage = self.getTotal()
@@ -132,22 +89,11 @@ class SyncHandler(BaseHandler):
                 dic_source["alt"] = text.find('img').get('alt')
                 dic_source["src"] = text.find('img').get('src')
                 dic_source["detail"] = sourceDetial[index].string
-                self.db.execute(sql,str(dic_source["title"]),str(dic_source["href"]),str(dic_source["alt"]),str(dic_source["src"]),str(dic_source["detail"]))
+                self.mysl_db.execute(sql,str(dic_source["title"]),str(dic_source["href"]),str(dic_source["alt"]),str(dic_source["src"]),str(dic_source["detail"]))
                 list.append(dic_source)
 
         self.render("searchPage.html",queryset="")
 
 
-def main():
-    print "server start"
-    tornado.options.parse_command_line()
-    http_server = tornado.httpserver.HTTPServer(Application())
-    print http_server.listen.im_class
-    #app = Application()
-    #app.listen(options.port)   web.application.listen be used to avoid the need to create httpserver
-    http_server.listen(options.port)
-    tornado.ioloop.IOLoop.instance().start()
 
-if __name__ == "__main__":
-    
-    main()
+

@@ -13,7 +13,7 @@ from tornado.options import define,options
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-
+reload(tornado.ioloop)
 define("port", default=8888, help="tornado port", type=int)
 define("mysql_host", default="127.0.0.1:3306", help="host")
 define("mysql_database", default="search", help="database name")
@@ -36,7 +36,7 @@ class Application(tornado.web.Application):
             #cookie_secret="__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__",
             #login_url="/auth/login",
             gzip=True,
-            debug=True,
+            debug=False,
         )
         tornado.web.Application.__init__(self, handlers, **settings)
         
@@ -49,6 +49,7 @@ class Application(tornado.web.Application):
 
 class BaseHandler(tornado.web.RequestHandler):
     @property
+    @tornado.web.asynchronous
     def db(self):
         return self.application.db
 
@@ -56,10 +57,15 @@ class BaseHandler(tornado.web.RequestHandler):
 
 class HomeHandler(BaseHandler):
     def get(self):
+
         self.render("searchPage.html",queryset="",keyword="")
+        #self.write("hello tornado nginx")
 
 class QueryHandler(BaseHandler):
+   # @tornado.web.asynchronous
     def get(self):
+        # import pdb
+        # pdb.set_trace()
         keyword = self.get_argument("keyword",None)
         
         cl = SphinxClient()    
@@ -71,8 +77,7 @@ class QueryHandler(BaseHandler):
         ids = ()
         queryset = {}
         if len(res['matches']) > 0:
-            for i in res['matches']:
-                listid.append(i['id'])
+            listid = [i['id'] for i in res['matches']]
             ids = tuple(listid)
             if len(ids) == 1:
                 ids = ids[0]
@@ -90,7 +95,7 @@ class QueryHandler(BaseHandler):
 class SyncHandler(BaseHandler):
         #get the dangdang's html 
     def getTotal(self):
-        proxy_handler = urllib2.ProxyHandler({'http': 'http://'+'58.68.246.12:18080'})      
+        proxy_handler = urllib2.ProxyHandler({'http': 'http://'+'58.68.246.12:18080'})
         opener = urllib2.build_opener(proxy_handler)
         urllib2.install_opener(opener)
         url = 'http://category.dangdang.com/pg1-cp01.54.06.00.00.00.html'
@@ -118,14 +123,14 @@ class SyncHandler(BaseHandler):
             
 
            
-            for item in xrange(len(source)):
+            for item,text in enumerate(source):
                 sql = "insert into designBook (title,href,alt,imgsrc,detail) values (%s,%s,%s,%s,%s)"
                 dic_source = {}
-                dic_source["title"] = source[item].get("title")
-                dic_source["href"] = source[item].get("href")
-                dic_source["alt"] = source[item].find('img').get('alt')
-                dic_source["src"] = source[item].find('img').get('src')
-                dic_source["detail"] = sourceDetial[item].string
+                dic_source["title"] = text.get("title")
+                dic_source["href"] = text.get("href")
+                dic_source["alt"] = text.find('img').get('alt')
+                dic_source["src"] = text.find('img').get('src')
+                dic_source["detail"] = sourceDetial[index].string
                 self.db.execute(sql,str(dic_source["title"]),str(dic_source["href"]),str(dic_source["alt"]),str(dic_source["src"]),str(dic_source["detail"]))
                 list.append(dic_source)
 
@@ -136,11 +141,14 @@ def main():
     print "server start"
     tornado.options.parse_command_line()
     http_server = tornado.httpserver.HTTPServer(Application())
+    print http_server.listen.im_class
+    #app = Application()
+    #app.listen(options.port)   web.application.listen be used to avoid the need to create httpserver
     http_server.listen(options.port)
     loop = tornado.ioloop.IOLoop.instance()
-    tornado.autoreload.start(loop) 
+    tornado.autoreload.start(loop)
     loop.start()
 
 if __name__ == "__main__":
-    reload(tornado.ioloop)
+    
     main()

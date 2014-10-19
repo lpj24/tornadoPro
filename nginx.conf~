@@ -1,0 +1,212 @@
+
+#user  nobody;
+#默认开启的子进程数,为cpu的总核数，我的是双核
+worker_processes  2;
+
+#error_log  logs/error.log;
+#错误日志存放的路径
+error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#进程id存放的路径
+pid        logs/nginx.pid;
+
+
+events {
+    #指定使用的网络模型 我使用linux系统，使用epoll模型
+    use epoll;
+    #允许的连接数
+    worker_connections  1024;
+}
+
+
+
+http {
+    #tornado反向代理
+    upstream tornados {
+        server 127.0.0.1:8888;
+        #server 127.0.0.1:8001;
+    }
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+    #                  '$status $body_bytes_sent "$http_referer" '
+    #                  '"$http_user_agent" "$http_x_forwarded_for"';
+
+    #access_log  logs/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+    
+    #客户端能上传文件的大小
+    client_max_body_size 8m;
+   
+    #开启gzip压缩
+    gzip  on;
+    
+    proxy_read_timeout 200;
+    tcp_nodelay on;
+    gzip_min_length 1k;       #压缩文件最小限制
+    gzip_proxied any;
+    gzip_types text/plain application/x-javascript text/css application/xml;  #压缩文件的类型  
+    gzip_vary on;
+    #fastcgi_intercept_errors on; 
+    #强制使用代理服务器错误拦截
+    proxy_intercept_errors on;
+    
+    #server {
+        #listen       80;
+        #server_name  localhost;
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        #location / {
+        #    root   html;
+        #  index  index.html index.htm;
+        #}
+
+        #error_page  404              /404.html;
+
+        # redirect server error pages to the static page /50x.html
+        #
+        #error_page   500 502 503 504  /50x.html;
+        #location = /50x.html {
+         #   root   html;
+        #}
+
+        # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+        #
+        #location ~ \.php$ {
+        #    proxy_pass   http://127.0.0.1;
+        #}
+
+        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+        #
+        #location ~ \.php$ {
+        #    root           html;
+        #    fastcgi_pass   127.0.0.1:9000;
+        #    fastcgi_index  index.php;
+        #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+        #    include        fastcgi_params;
+        #}
+
+        # deny access to .htaccess files, if Apache's document root
+        # concurs with nginx's one
+        #
+        #location ~ /\.ht {
+        #    deny  all;
+        #}
+    #}
+
+
+    # another virtual host using mix of IP-, name-, and port-based configuration
+    #
+    #server {
+    #    listen       8000;
+    #    listen       somename:8080;
+    #    server_name  somename  alias  another.alias;
+
+    #    location / {
+    #        root   html;
+    #        index  index.html index.htm;
+    #    }
+    #}
+
+
+    # HTTPS server
+    #
+    #server {
+    #    listen       443 ssl;
+    #    server_name  localhost;
+
+    #    ssl_certificate      cert.pem;
+    #    ssl_certificate_key  cert.key;
+
+    #    ssl_session_cache    shared:SSL:1m;
+    #    ssl_session_timeout  5m;
+
+    #    ssl_ciphers  HIGH:!aNULL:!MD5;
+    #    ssl_prefer_server_ciphers  on;
+
+    #    location / {
+    #        root   html;
+    #        index  index.html index.htm;
+    #    }
+    #}
+
+    server {
+      
+        listen 80;
+        root /home/lpj/tornadoPro;
+        client_max_body_size 50M;
+
+        error_page 404  /404.html; 
+        location /404.html {
+          root /home/lpj/tornadoPro/templates;
+          internal;
+        }
+        #静态文件缓存
+        location ^~ /static/ {
+
+            root /home/lpj/tornadoPro;
+
+            if ($query_string) {
+
+                expires 1d;
+
+            }
+
+        }
+
+        location = /favicon.ico {
+
+            rewrite (.*) /static/favicon.ico;
+
+        }
+
+        location = /robots.txt {
+
+            rewrite (.*) /static/robots.txt;
+
+        }
+        
+
+        #静态文件缓存
+        #location ~* \.(gif|jpg|png)$ {
+        #    expires 24h;
+        #}
+        #location ~.*\.(js|css)?$  
+        #{  
+        #   expires 1h;  
+        #}  
+        
+        location / {
+
+            proxy_pass_header Server;
+
+            proxy_set_header Host $http_host;
+
+            proxy_redirect off;
+
+            proxy_set_header X-Real-IP $remote_addr;
+
+            proxy_set_header X-Scheme $scheme;
+
+            proxy_pass http://tornados;
+
+        }
+
+    }
+
+
+
+
+
+
+}

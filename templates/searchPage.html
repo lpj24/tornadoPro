@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -10,7 +10,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
      $('#keyword').attr('value',"{{keyword}}")
-           
+
    })
 </script>
 </head>
@@ -19,27 +19,27 @@
    <div class="row">
        <div class="span4 offset4">
           <form class="form-search" method="GET" action="/query/">
-          
-          <input class="input-medium search-query" type="text" name="keyword" id="keyword" placeholder="关键字"/>     
+
+          <input class="input-medium search-query" type="text" name="keyword" id="keyword" placeholder="关键字"/>
           <input class="btn" type="submit" value="搜索"/>
-     </form>   
+     </form>
        </div>
     </div>
    </div>
-  
-   <div class="container-fluid"> 
-   <hr size="2" color="blue" width="100%"></hr>   
+
+   <div class="container-fluid">
+   <hr size="2" color="blue" width="100%"></hr>
      {%for i in queryset%}
      <div class="row-fluid offset2">
        <div class="span2">
          <a href={{i.href}} target="_blank"><img src={{i.imgsrc}} alt={{i.alt}}  align="left"/></a>
-       </div> 
+       </div>
        <div class="span10">
           <div>
              <div class="span6"> <a href={{i.href}} target="_blank">{{i.title}}</a>
-             <br/><strong>概述:</strong><p class="small">{{i.detail}}</p>     
+             <br/><strong>概述:</strong><p class="small">{{i.detail}}</p>
              </div>
-               
+
           </div>
        </div>
      </div>
