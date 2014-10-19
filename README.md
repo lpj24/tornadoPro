@@ -1,7 +1,8 @@
 tornadoPro
 sphinx全文检索由django迁移到tornado上
 
-使用beautifulsoup从当当网抓取所有的程序设计类书籍存储到mysql数据库，用croeseek做全文索引，django框架
+使用beautifulsoup从当当网抓取所有的程序设计类书籍存储到mysql数据库，用croeseek做全文索引，tornado
+supervisord为tornado做守护进程  使用upstart对nginx和coreseek进行管理
 
 1.首先从当当网抓取程序设计类书籍。见syncHandler类，获取当当网的程序设计类书籍的总页数,遍历总页数获取所有的书籍，获取书籍的图片，标题，链接，alt,详细概述。插入到mysql书籍库
 
