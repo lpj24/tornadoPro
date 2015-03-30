@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="{{static_url("bootstrap/css/bootstrap.min.css")}}" rel="stylesheet">
+        <script src="{{static_url("bootstrap/js/bootstrap.min.js")}}"></script>
+        <script src="http://code.jquery.com/jquery.js"></script>
+	<title></title>
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN""http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title>Event Source Example</title>
+</head>
+<body>
+<p>Messages:</p>
+<div id="messages" style="width:800px;height:300px;overflow:scroll;"></div>
+
+<script src="{{static_url("bootstrap/js/pushstream.js")}}" type="text/javascript" language="javascript" charset="utf-8"></script>
+<script type="text/javascript" language="javascript" charset="utf-8">
+// <![CDATA[
+ function messageReceived(text, id, channel) {
+   document.getElementById('messages').innerHTML += id + ': ' + text + '<br>';
+ };
+var pushstream = new PushStream({
+host: window.location.hostname,
+port: window.location.port,
+modes: "eventsource"
+});
+pushstream.onmessage = messageReceived;
+pushstream.addChannel('my_channel_1');
+pushstream.connect();
+// ]]>
+</script>
+</body>
+</html>
