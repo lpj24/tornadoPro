@@ -8,7 +8,7 @@ supervisord为tornado做守护进程  使用upstart对nginx和coreseek进行管�
 
 2.更新sphinx的索引，启动sphinx的进程,首先ps -eo comm,cmd,pid | grep searchd查处sphinx的进程pid，kill -QUIT searched的pid号 然后./indexer --all启动所有的索引,./searchd启动进程
 
-3.查询是queryHandler类。使用sphinxapi模块，操作详解http://6167018.blog.51cto.com/6157018/1435150我的博客
+3.使用sphinxapi模块，操作详解http://www.jianshu.com/users/709bf3373f34/latest_articles我的博客
 
 
 
