@@ -1,5 +1,5 @@
 tornadoPro
-sphinx全文检索由django迁移到tornado上
+sphinx全文检索由django迁移到tornado上,使用多进程并行抓取
 
 使用beautifulsoup从当当网抓取所有的程序设计类书籍存储到mysql数据库，用croeseek做全文索引，tornado
 supervisord为tornado做守护进程  使用upstart对nginx和coreseek进行管理
