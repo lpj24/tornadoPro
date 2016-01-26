@@ -1,3 +1,4 @@
+release 1.0.0
 tornadoPro
 sphinx全文检索由django迁移到tornado上,使用多进程并行抓取
 
